@@ -40,11 +40,11 @@
     ],
     "start_url": "/index.html",
     "scope": ".",
-    "display": "standalone", //or fullscreen, minimal-ui, browser
-    "orientation": "portrait-primary", //or any, landscape, landscape-primary, primary
+    "display": "standalone", 
+    "orientation": "portrait-primary",
     "background_color": "#fff", 
     "theme_color": "#3f51b5",
     "description": "A simple Instagram Clone, implementing a lot of PWA love.",
     "dir": "ltr",
     "lang": "en-US"
-  }
+}
