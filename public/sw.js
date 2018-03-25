@@ -16,5 +16,13 @@ self.addEventListener('activate', function(event){
 // install and active events are triggered by browser
 
 self.addEventListener('fetch', function(event){ //fetch event is triggered by webApp
-  event.respondWith(fetch(event.request));
+  event.respondWith(
+    caches.match(event.request) //caches refers to overall cache storage
+      .then(function(response){
+        if(response)
+        return response;
+        else 
+        return fetch(event.request);
+      })
+  );
 }); 
