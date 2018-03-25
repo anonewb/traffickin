@@ -1,5 +1,9 @@
 var deferredPrompt;
 
+if(!window.Promise){
+    window.Promise = Promise;
+}
+
 if('serviceWorker' in navigator){ // check if serviceWorker prop is present in navigator obj
     navigator.serviceWorker
         .register('/sw.js') // register this file as SW
