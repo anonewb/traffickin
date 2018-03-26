@@ -36,10 +36,19 @@ self.addEventListener('fetch', function(event){ //fetch event is triggered by we
   event.respondWith(
     caches.match(event.request) //caches refers to overall cache storage
       .then(function(response){
-        if(response)
-        return response;
-        else 
-        return fetch(event.request);
+        if(response) {
+          return response;
+        }
+        else {
+          return fetch(event.request)
+            .then(function(res){
+              return caches.open('dynamic')
+                .then(function(cache){
+                  cache.put(event.request.url, res.clone());
+                  return res;
+                })
+            });      
+        }
       })
   );
 }); 
