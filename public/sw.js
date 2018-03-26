@@ -1,5 +1,5 @@
 
-var CACHE_STATIC_NAME = 'static-v6';
+var CACHE_STATIC_NAME = 'static-v7';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 
 self.addEventListener('install', function(event){ //***this install stage will be triggered when user visit's pg for first time

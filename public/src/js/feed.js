@@ -30,8 +30,16 @@ shareImageButton.addEventListener('click', openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
+// Allows to save assets in cache on demand of user to save article
 function onSaveButtonClicked(event) {
   console.log('clicked');
+  if ('caches' in window) {
+    caches.open('user-requested')
+      .then(function(cache){
+        cache.add('https://httpbin.org/get');
+        cache.add('/src/images/sf-boat.jpg');
+      })
+  }
 }
 
 function createCard() {
