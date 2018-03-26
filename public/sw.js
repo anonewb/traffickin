@@ -1,5 +1,5 @@
 
-var CACHE_STATIC_NAME = 'static-v4';
+var CACHE_STATIC_NAME = 'static-v6';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 
 self.addEventListener('install', function(event){ //***this install stage will be triggered when user visit's pg for first time
@@ -59,7 +59,7 @@ self.addEventListener('fetch', function(event){ //fetch event is triggered by we
             .then(function(res){
               return caches.open(CACHE_DYNAMIC_NAME)
                 .then(function(cache){
-                  cache.put(event.request.url, res.clone());
+                  // cache.put(event.request.url, res.clone());
                   return res;
                 })
             })
