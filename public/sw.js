@@ -77,8 +77,32 @@ self.addEventListener('fetch', function(event){ //fetch event is triggered by we
 }); 
 
 // cache-only strategy
-// self.addEventListener('fetch', function(event){ //fetch event is triggered by webApp
+// self.addEventListener('fetch', function(event){ 
 //   event.respondWith(
-//     caches.match(event.request) //caches refers to overall cache storage
+//     caches.match(event.request) 
 //   );
 // }); 
+
+// network-only strategy (X)
+// self.addEventListener('fetch', function(event){ 
+//   event.respondWith(
+//     fetch(event.request);
+//   );
+// }); 
+
+// network with cache fallback strategy
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     fetch(event.request)
+//       .then(function(res) {
+//         return caches.open(CACHE_DYNAMIC_NAME)
+//                 .then(function(cache) {
+//                   cache.put(event.request.url, res.clone());
+//                   return res;
+//                 })
+//       })
+//       .catch(function(err) {
+//         return caches.match(event.request);
+//       })
+//   );
+// });
