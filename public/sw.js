@@ -48,15 +48,16 @@ self.addEventListener('activate', function(event){ //***this activate stage will
 });
 // install and active events are triggered by browser
 
+// cache with network fallback strategy
 self.addEventListener('fetch', function(event){ //fetch event is triggered by webApp
   event.respondWith(
     caches.match(event.request) //caches refers to overall cache storage
-      .then(function(response){
+      .then(function(response){ //getting from cache storage
         if(response) {
           return response;
         }
         else {
-          return fetch(event.request)
+          return fetch(event.request) //getting from network
             .then(function(res){
               return caches.open(CACHE_DYNAMIC_NAME)
                 .then(function(cache){
@@ -74,3 +75,10 @@ self.addEventListener('fetch', function(event){ //fetch event is triggered by we
       })
   );
 }); 
+
+// cache-only strategy
+// self.addEventListener('fetch', function(event){ //fetch event is triggered by webApp
+//   event.respondWith(
+//     caches.match(event.request) //caches refers to overall cache storage
+//   );
+// }); 
