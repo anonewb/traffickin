@@ -1,5 +1,5 @@
 
-var CACHE_STATIC_NAME = 'static-v8';
+var CACHE_STATIC_NAME = 'static-v10';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 
 self.addEventListener('install', function(event){ //***this install stage will be triggered when user visit's pg for first time
@@ -14,6 +14,7 @@ self.addEventListener('install', function(event){ //***this install stage will b
         cache.addAll([
           '/',
           '/index.html',
+          '/offline.html',
           '/src/js/app.js',
           '/src/js/feed.js',
           '/src/js/promise.js',
@@ -64,7 +65,10 @@ self.addEventListener('fetch', function(event){ //fetch event is triggered by we
                 })
             })
             .catch(function(err){
-
+              return caches.open(CACHE_STATIC_NAME)
+                .then(function(cache){
+                  return cache.match('/offline.html');
+                });
             });
         }
       })
