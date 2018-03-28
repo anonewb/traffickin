@@ -5,7 +5,7 @@ var dbPromise = idb.open('posts-store', 1, function (db) {
     }
   });
   
-function writeData(st, data) {
+function writeData(st, data) { //st = store
     return dbPromise
       .then(function(db) {
         var tx = db.transaction(st, 'readwrite');
@@ -14,4 +14,12 @@ function writeData(st, data) {
         return tx.complete;
       });
 }
-  
+
+function readAllData(st) {
+    return dbPromise
+      .then(function(db) {
+        var tx = db.transaction(st, 'readonly');
+        var store = tx.objectStore(st);
+        return store.getAll();
+      });
+}

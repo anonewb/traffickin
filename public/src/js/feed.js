@@ -108,21 +108,12 @@ fetch(url)
     updateUI(dataArray);
   });
 
-if ('caches' in window) {
-  caches.match(url)
-    .then(function(response) {
-      if (response) {
-        return response.json();
-      }
-    })
-    .then(function(data) {
-      console.log('From cache', data);
-      if (!networkDataReceived) {
-        var dataArray = [];
-        for (var key in data) {
-          dataArray.push(data[key]);
+  if ('indexedDB' in window) {
+    readAllData('posts')
+      .then(function(data) {
+        if (!networkDataReceived) {
+          console.log('From cache', data);
+          updateUI(data);
         }
-        updateUI(dataArray)
-      }
-    });
-}
+      });
+  }
