@@ -24,7 +24,7 @@ function readAllData(st) {
       });
 }
 
-// method 1 for clearing data stored in indexedDB after it has been del at firebase
+// method 1 for clearing all the data stored in indexedDB after it has been del at firebase
 function clearAllData(st) {
     return dbPromise
       .then(function(db) {
@@ -34,3 +34,18 @@ function clearAllData(st) {
         return tx.complete;
       });
   }
+
+
+// method 2 for clearing specific data using id stored in indexedDB after it has been del at firebase
+function deleteItemFromData(st, id) {
+    dbPromise
+      .then(function(db) {
+        var tx = db.transaction(st, 'readwrite');
+        var store = tx.objectStore(st);
+        store.delete(id);
+        return tx.complete;
+      })
+      .then(function() {
+        console.log('Item deleted!');
+      });
+}
