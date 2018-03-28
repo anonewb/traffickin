@@ -10,7 +10,7 @@ function writeData(st, data) { //st = store
       .then(function(db) {
         var tx = db.transaction(st, 'readwrite');
         var store = tx.objectStore(st);
-        store.put(data);
+        store.put(data); //put() overwrites the old value with updated value
         return tx.complete;
       });
 }
@@ -23,3 +23,14 @@ function readAllData(st) {
         return store.getAll();
       });
 }
+
+// method 1 for clearing data stored in indexedDB after it has been del at firebase
+function clearAllData(st) {
+    return dbPromise
+      .then(function(db) {
+        var tx = db.transaction(st, 'readwrite');
+        var store = tx.objectStore(st);
+        store.clear();
+        return tx.complete;
+      });
+  }
