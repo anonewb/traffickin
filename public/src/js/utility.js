@@ -1,13 +1,17 @@
+// this file contents all the utility fn to manipulate indexedDB that can be reused
+
 
 var dbPromise = idb.open('posts-store', 1, function (db) {
-    if (!db.objectStoreNames.contains('posts')) {
-      db.createObjectStore('posts', {keyPath: 'id'});
+    if (!db.objectStoreNames.contains('posts')) { //this 'posts' obj store is for caching task
+      db.createObjectStore('posts', {keyPath: 'id'}); //id uniquely identifies each task
     }
     if (!db.objectStoreNames.contains('sync-posts')) {
-      db.createObjectStore('sync-posts', {keyPath: 'id'});
+      db.createObjectStore('sync-posts', {keyPath: 'id'}); //this 'sync-posts' obj store is for synchronization task, ie store data in sync queue
     }
   });
-  
+
+// 
+// takes 2 args: the 'store' we want to access and 'data' we want to write. eg: store = posts line5
 function writeData(st, data) { //st = store
     return dbPromise
       .then(function(db) {

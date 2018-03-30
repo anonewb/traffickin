@@ -138,7 +138,23 @@ form.addEventListener('submit', function(event) {
   if ('serviceWorker' in navigator && 'SyncManager' in window) { //checking if SW is present in the browser and also the SyncManager API
     navigator.serviceWorker.ready //if SW is in activ state, then returns a promise..
       .then(function(sw) {
-        sw.sync.register('sync-new-posts'); // sync is SyncManager
+        var post = {
+          id: new Date().toISOString(), //just for purpose of unique identifier
+          title: titleInput.value,
+          location: locationInput.value
+        };
+        writeData('sync-posts', post) //above 'post' obj is stored in 'sync-posts' store
+          .then(function() {
+            return sw.sync.register('sync-new-posts'); // sync is SyncManager
+          })
+          .then(function() {
+            var snackbarContainer = document.querySelector('#confirmation-toast'); //snackbarContainer is black notification feature at bottom to display some msg
+            var data = {message: 'Your Post was saved for syncing!'};
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
       });
     }
 })
