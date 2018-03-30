@@ -125,7 +125,7 @@ if ('indexedDB' in window) {
 }
 
 function sendData() {
-  fetch('https://insta-clone-e3283.firebaseio.com/posts.json', {
+  fetch('https://us-central1-insta-clone-e3283.cloudfunctions.net/storePostData', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

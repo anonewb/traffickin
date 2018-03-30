@@ -199,7 +199,7 @@ self.addEventListener('sync', function(event) { //whenever connectivity is re-es
         .then(function(data) {
           for (var dt of data) { //looping coz user can post multiple posts
           // now this fn is similar to sendData() in feed.js
-            fetch('https://insta-clone-e3283.firebaseio.com/posts.json', { // posting/sending data that we want to store in server
+            fetch('https://us-central1-insta-clone-e3283.cloudfunctions.net/storePostData', { // posting/sending data that we want to store in server
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
