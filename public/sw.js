@@ -189,3 +189,44 @@ self.addEventListener('fetch', function (event) {
 //       })
 //   );
 // });
+
+self.addEventListener('sync', function(event) { //whenever connectivity is re-established, SW will trigger this sync event. means now internet is on
+  console.log('[Service Worker] Background syncing', event);
+  if (event.tag === 'sync-new-posts') { //checking if tasks is 'sync-new-posts'
+    console.log('[Service Worker] Syncing new Posts');
+    event.waitUntil(
+      readAllData('sync-posts') //reading/getting data from indexedDB
+        .then(function(data) {
+          for (var dt of data) { //looping coz user can post multiple posts
+          // now this fn is similar to sendData() in feed.js
+            fetch('https://insta-clone-e3283.firebaseio.com/posts.json', { // posting/sending data that we want to store in server
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                id: dt.id, //dt refers to each post stored in indexedDb
+                title: dt.title,
+                location: dt.location,
+                image: 'https://firebasestorage.googleapis.com/v0/b/insta-clone-e3283.appspot.com/o/sf-boat.jpg?alt=media&token=dde0288d-8fb1-4def-bcb9-91aa143dc336'
+              })
+            })
+              .then(function(res) {
+                console.log('Sent data', res);
+                if (res.ok) { //checks if response is 200
+                  res.json()
+                    .then(function(resData) {
+                      deleteItemFromData('sync-posts', resData.id); // then del that data.id from indexedDB if res was successful
+                    });
+                }
+              })
+              .catch(function(err) {
+                console.log('Error while sending data', err);
+              });
+          }
+
+        })
+    );
+  }
+});
