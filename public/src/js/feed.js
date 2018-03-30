@@ -132,7 +132,13 @@ form.addEventListener('submit', function(event) {
     return;
   }
 
-  closeCreatePostModal();
+  closeCreatePostModal(); // close the post model if data is valid
 
-
+  // now we have to register a sync task
+  if ('serviceWorker' in navigator && 'SyncManager' in window) { //checking if SW is present in the browser and also the SyncManager API
+    navigator.serviceWorker.ready //if SW is in activ state, then returns a promise..
+      .then(function(sw) {
+        sw.sync.register('sync-new-posts'); // sync is SyncManager
+      });
+    }
 })
