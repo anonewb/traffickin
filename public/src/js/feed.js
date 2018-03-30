@@ -90,7 +90,7 @@ function createCard(data) {
   sharedMomentsArea.appendChild(cardWrapper);
 }
 
-function updateUI(data) {
+function updateUI(data) { 
   clearCards();
   for (var i = 0; i < data.length; i++) {
     createCard(data[i]);
@@ -124,6 +124,26 @@ if ('indexedDB' in window) {
     });
 }
 
+function sendData() {
+  fetch('https://insta-clone-e3283.firebaseio.com/posts.json', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      id: new Date().toISOString(),
+      title: titleInput.value,
+      location: locationInput.value,
+      image: 'https://firebasestorage.googleapis.com/v0/b/insta-clone-e3283.appspot.com/o/sf-boat.jpg?alt=media&token=dde0288d-8fb1-4def-bcb9-91aa143dc336'
+    })
+  })
+    .then(function(res) {
+      console.log('Sent data', res);
+      updateUI();
+    })
+}
+
 form.addEventListener('submit', function(event) {
   event.preventDefault(); //submit event sends data directly to the server which we dont want to do
 
@@ -145,7 +165,7 @@ form.addEventListener('submit', function(event) {
         };
         writeData('sync-posts', post) //above 'post' obj is stored in 'sync-posts' store
           .then(function() {
-            return sw.sync.register('sync-new-posts'); // sync is SyncManager
+            return sw.sync.register('sync-new-posts'); // sync is SyncManager. **Register sync task with SW
           })
           .then(function() {
             var snackbarContainer = document.querySelector('#confirmation-toast'); //snackbarContainer is black notification feature at bottom to display some msg
@@ -156,5 +176,7 @@ form.addEventListener('submit', function(event) {
             console.log(err);
           });
       });
+    } else { // adding a fallback if browser doesnt support SW
+      sendData(); // sends data directly to backend
     }
 })
