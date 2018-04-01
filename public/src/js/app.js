@@ -41,7 +41,7 @@ function displayConfirmNotification() {
 
     navigator.serviceWorker.ready
       .then(function(swreg) {
-        swreg.showNotification('Successfully subscribed! (from SW)', options);
+        swreg.showNotification('Successfully subscribed!', options);
       });
   }
 }
@@ -51,16 +51,42 @@ function configurePushSub() {
     return;
   }
 
+  var reg;
   navigator.serviceWorker.ready
     .then(function(swreg) {
+      reg = swreg;
       return swreg.pushManager.getSubscription();
     })
     .then(function(sub) {
-      if (sub === null) {
+      if (sub === null) { //if yes, then this fn creates new sub in firebase console where we can see endpoints and keys
         // Create a new subscription
+        var vapidPublicKey = 'BHLvvcMO51rXpnxR81qAyPgu6CXSjlf4IpK9H9lM1mwqolPWFYrEmoh6nd9oagLabmHDkna4a6QcjUZBbD4zZzE'; //generated using web-push pkg
+        var convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
+        return reg.pushManager.subscribe({ //returnning to backend
+          userVisibleOnly: true,
+          applicationServerKey: convertedVapidPublicKey //server is allowed to send push msg
+        })
       } else {
         // We have a subscription
       }
+    })  
+    .then(function(newSub) {
+      return fetch('https://insta-clone-e3283.firebaseio.com/subscriptions.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(newSub)
+      })
+    })
+    .then(function(res) {
+      if (res.ok) {
+        displayConfirmNotification();
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
     });
 }
 
