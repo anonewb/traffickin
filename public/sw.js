@@ -2,7 +2,7 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v22';
+var CACHE_STATIC_NAME = 'static-v23';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var STATIC_FILES = [
   '/',
@@ -250,10 +250,10 @@ self.addEventListener('notificationclick', function(event) {
           });
 
           if (client !== undefined) {
-            client.navigate('http://localhost:8080');
+            client.navigate(notification.data.url);
             client.focus();
           } else {
-            clients.openWindow('http://localhost:8080');
+            clients.openWindow(notification.data.url);
           }
           notification.close();
         })
@@ -271,7 +271,7 @@ self.addEventListener('push', function(event) {
   console.log('Push Notification received', event);
 
   // if data fails to come from server
-  var data = {title: 'New!', content: 'Something new happened!'};
+  var data = {title: 'New!', content: 'Something new happened!', openUrl: '/'};
 
   if (event.data) {
     data = JSON.parse(event.data.text());
@@ -280,7 +280,10 @@ self.addEventListener('push', function(event) {
   var options = {
     body: data.content,
     icon: '/src/images/icons/app-icon-96x96.png',
-    badge: '/src/images/icons/app-icon-96x96.png'
+    badge: '/src/images/icons/app-icon-96x96.png',
+    data: {
+      url: data.openUrl
+    }
   };
 
   event.waitUntil(

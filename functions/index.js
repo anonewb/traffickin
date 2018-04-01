@@ -38,7 +38,11 @@ exports.storePostData = functions.https.onRequest(function(request, response) {
               }
             };
   
-            webpush.sendNotification(pushConfig, JSON.stringify({title: 'New Post', content: 'New Post added!'})) //2nd arg of sendNotification() is paypload
+            webpush.sendNotification(pushConfig, JSON.stringify({
+              title: 'New Post', 
+              content: 'New Post added!',
+              openUrl: '/help'
+            })) //2nd arg of sendNotification() is paypload
               .catch(function(err) {
                 console.log(err);
               })
