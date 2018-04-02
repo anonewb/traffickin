@@ -1,4 +1,5 @@
 var deferredPrompt;
+// selecting enableNotificationsButtons
 var enableNotificationsButtons = document.querySelectorAll('.enable-notifications');
 
 
@@ -6,11 +7,15 @@ if(!window.Promise){
     window.Promise = Promise;
 }
 
-if('serviceWorker' in navigator){ // check if serviceWorker prop is present in navigator obj
+// check if serviceWorker prop is present in navigator obj
+if('serviceWorker' in navigator){ 
     navigator.serviceWorker
         .register('/sw.js') // register this file as SW
         .then(function(){
             console.log('Service worker registered');
+        })
+        .catch(function(err) {
+          console.log(err);
         });
 }
 
@@ -71,7 +76,7 @@ function configurePushSub() {
       }
     })  
     .then(function(newSub) {
-      return fetch('https://insta-clone-e3283.firebaseio.com/subscriptions.json', {
+      return fetch('https://insta-clone-e3283.firebaseio.com/subscriptions.json', { // 400 ERROR!!
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,6 +84,12 @@ function configurePushSub() {
         },
         body: JSON.stringify(newSub)
       })
+      // .then(function(){
+      //   console.log("yy");
+      // })
+      // .catch(function(err){
+      //   console.log(err);
+      // })
     })
     .then(function(res) {
       if (res.ok) {

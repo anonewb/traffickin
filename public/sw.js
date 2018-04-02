@@ -250,7 +250,7 @@ self.addEventListener('notificationclick', function(event) {
           });
 
           if (client !== undefined) {
-            client.navigate(notification.data.url);
+            client.navigate(notification.data.url); // BUG!!!!!!!!!!!!!!
             client.focus();
           } else {
             clients.openWindow(notification.data.url);
