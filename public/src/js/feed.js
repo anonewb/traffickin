@@ -5,12 +5,26 @@ var sharedMomentsArea = document.querySelector('#shared-moments');
 var form = document.querySelector('form'); //selecting form element
 var titleInput = document.querySelector('#title'); //selecting titleInput element
 var locationInput = document.querySelector('#location'); //selecting locationInput element
+var videoPlayer = document.querySelector('#player');
+var canvasElement = document.querySelector('#canvas');
+var captureButton = document.querySelector('#capture-btn');
+var imagePicker = document.querySelector('#image-picker');
+var imagePickerArea = document.querySelector('#pick-image');
+
+
+
+function initializeLocation() {
+
+}
+
 
 function openCreatePostModal() {
   // createPostArea.style.display = 'block';
   // setTimeout(function() {
     createPostArea.style.transform = 'translateY(0)';
   // }, 1);
+  initializeLocation();
+  
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
