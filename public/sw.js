@@ -199,18 +199,17 @@ self.addEventListener('sync', function(event) { //whenever connectivity is re-es
         .then(function(data) {
           for (var dt of data) { //looping coz user can post multiple posts
           // now this fn is similar to sendData() in feed.js
+            var postData = new FormData();
+            postData.append('id', dt.id);
+            postData.append('title', dt.title);
+            postData.append('location', dt.location);
+            // postData.append('rawLocationLat', dt.rawLocation.lat);
+            // postData.append('rawLocationLng', dt.rawLocation.lng);
+            postData.append('file', dt.picture, dt.id + '.png');
+
             fetch('https://us-central1-insta-clone-e3283.cloudfunctions.net/storePostData', { // posting/sending data that we want to store in server
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              body: JSON.stringify({
-                id: dt.id, //dt refers to each post stored in indexedDb
-                title: dt.title,
-                location: dt.location,
-                image: 'https://firebasestorage.googleapis.com/v0/b/insta-clone-e3283.appspot.com/o/sf-boat.jpg?alt=media&token=dde0288d-8fb1-4def-bcb9-91aa143dc336'
-              })
+              body: postData
             })
               .then(function(res) {
                 console.log('Sent data', res);
