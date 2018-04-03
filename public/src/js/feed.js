@@ -13,8 +13,25 @@ var imagePickerArea = document.querySelector('#pick-image');
 
 
 
-function initializeLocation() {
+function initializeLocation() { 
+  // Creating our own polyfills
+  if (!('mediaDevices' in navigator)) {
+    navigator.mediaDevices = {};
+  }
 
+  if (!('getUserMedia' in navigator.mediaDevices)) {
+    navigator.mediaDevices.getUserMedia = function (constraints) { // 'constraints' can be audio or video
+      var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      if (!getUserMedia) {
+        return Promise.reject(new Error('getUserMedia is not implemented!'));
+      }
+
+      return new Promise(function (resolve, reject) {
+        getUserMedia.call(navigator, constraints, resolve, reject);
+      });
+    }
+  }
 }
 
 
@@ -24,7 +41,7 @@ function openCreatePostModal() {
     createPostArea.style.transform = 'translateY(0)';
   // }, 1);
   initializeLocation();
-  
+
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
