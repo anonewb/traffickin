@@ -2,7 +2,7 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v23';
+var CACHE_STATIC_NAME = 'static-v25';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var STATIC_FILES = [
   '/',
@@ -275,6 +275,8 @@ self.addEventListener('push', function(event) {
 
   if (event.data) {
     data = JSON.parse(event.data.text());
+  } else {
+    data = 'Push message no payload';
   }
 
   var options = {
