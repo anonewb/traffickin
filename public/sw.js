@@ -2,7 +2,7 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v28';
+var CACHE_STATIC_NAME = 'static-v29';
 var CACHE_DYNAMIC_NAME = 'dynamic-v3';
 var STATIC_FILES = [
   '/',
@@ -204,8 +204,8 @@ self.addEventListener('sync', function(event) { //whenever connectivity is re-es
             postData.append('id', dt.id);
             postData.append('title', dt.title);
             postData.append('location', dt.location);
-            // postData.append('rawLocationLat', dt.rawLocation.lat);
-            // postData.append('rawLocationLng', dt.rawLocation.lng);
+            postData.append('rawLocationLat', dt.rawLocation.lat);
+            postData.append('rawLocationLng', dt.rawLocation.lng);
             postData.append('file', dt.picture, dt.id + '.png');
 
             fetch('https://us-central1-insta-clone-e3283.cloudfunctions.net/storePostData', { // posting/sending data that we want to store in server

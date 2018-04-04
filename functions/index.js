@@ -48,7 +48,7 @@ exports.storePostData = functions.https.onRequest(function (request, response) {
             id: fields.id,
             title: fields.title,
             location: fields.location,
-            rawLocation: {
+            rawLocation: { // added to get loc
               lat: fields.rawLocationLat,
               lng: fields.rawLocationLng
             },
