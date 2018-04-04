@@ -100,9 +100,9 @@ imagePicker.addEventListener('change', function (event) {
 
 function openCreatePostModal() {
   // createPostArea.style.display = 'block';
-  // setTimeout(function() {
+  setTimeout(function () {
     createPostArea.style.transform = 'translateY(0)';
-  // }, 1);
+  }, 1);
   initializeMedia();
   initializeLocation();
 
@@ -138,8 +138,15 @@ function closeCreatePostModal() {
   canvasElement.style.display = 'none';
   locationBtn.style.display = 'inline';
   locationLoader.style.display = 'none';
-
-  createPostArea.style.transform = 'translateY(100vh)';
+  captureButton.style.display = 'inline';
+  if (videoPlayer.srcObject) {
+    videoPlayer.srcObject.getVideoTracks().forEach(function (track) {
+      track.stop();
+    });
+  }
+  setTimeout(function () {
+    createPostArea.style.transform = 'translateY(100vh)';
+  }, 1);
   // createPostArea.style.display = 'none';
 }
 
