@@ -57,6 +57,9 @@ captureButton.addEventListener('click', function (event) {
   picture = dataURItoBlob(canvasElement.toDataURL()); // dataURItoBlob() stored in utility.js converts base64img to blob(file) to transfer it to server
 });
 
+imagePicker.addEventListener('change', function (event) {
+  picture = event.target.files[0];
+});
 
 function openCreatePostModal() {
   // createPostArea.style.display = 'block';
