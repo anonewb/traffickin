@@ -4,10 +4,10 @@ importScripts('/src/js/utility.js');
 
 var CACHE_STATIC_NAME = 'static-v30';
 var CACHE_DYNAMIC_NAME = 'dynamic-v3';
-var STATIC_FILES = [
-  '/',
-  '/index.html',
-  '/offline.html',
+var STATIC_FILES = [ //App Shell
+  '/', // imp to cache
+  '/index.html', // think about this as requests not as paths
+  '/offline.html', // you have urls here, caching urls i.e caching requests
   '/src/js/app.js',
   '/src/js/utility.js',
   '/src/js/feed.js',
@@ -23,6 +23,7 @@ var STATIC_FILES = [
   'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css'
 ];
 
+// TO LIMIT THE NO OF CACHING ITEMS
 // function trimCache(cacheName, maxItems) {
 //   caches.open(cacheName)
 //     .then(function (cache) {
@@ -36,6 +37,11 @@ var STATIC_FILES = [
 //     })
 // }
 
+//*** 'install' and 'activate' events are triggered by the browser
+//*** while 'fetch' event is triggered for each of the fetch requests from index.html like images, scripts files, styles files, icon, font, etc 
+// and also triggered by the fetch() used in app.js as its also making a GET request.
+
+// Caching the App Shell(static content) on Install
 self.addEventListener('install', function (event) { //***this install stage will be triggered when user visit's pg for first time
   console.log('[Service Worker] Installing Service Worker ...', event);
   event.waitUntil(
@@ -50,12 +56,15 @@ self.addEventListener('install', function (event) { //***this install stage will
   )
 });
 
+// Updating the App Shell to remove old resources from the cache
+// 'activate' event is triggered only when tabs are reopened
 self.addEventListener('activate', function (event) {
   console.log('[Service Worker] Activating Service Worker ....', event);
-  event.waitUntil(
-    caches.keys()
+  event.waitUntil( // activate event is waited until this fn is finished executing
+    caches.keys() //keys returns with names of array of [cached files both static-v2 and dynamic-v1]
       .then(function (keyList) {
-        return Promise.all(keyList.map(function (key) {
+        return Promise.all(keyList.map(function (key) { // Promise.all takes all promises and waits untill they are finished 
+                                                        // and 'keyList' contains array of strings, map() executes on each item of array tranforms it into array of objects
           if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
             console.log('[Service Worker] Removing old cache.', key);
             return caches.delete(key);
@@ -78,11 +87,11 @@ function isInArray(string, array) {
 }
 // install and active events are triggered by browser
 
-// cache with network fallback strategy
-self.addEventListener('fetch', function (event) {
 
+// cache with network fallback strategy OR cache 1st, then network
+self.addEventListener('fetch', function (event) {
   var url = 'https://insta-clone-e3283.firebaseio.com/posts';
-  if (event.request.url.indexOf(url) > -1) {
+  if (event.request.url.indexOf(url) > -1) { //STRATEGY: CACHE THEN NETWORK
     event.respondWith(fetch(event.request)
       .then(function (res) {
         var clonedRes = res.clone();
@@ -98,31 +107,31 @@ self.addEventListener('fetch', function (event) {
         return res;
       })
     );
-  } else if (isInArray(event.request.url, STATIC_FILES)) {
+  } else if (isInArray(event.request.url, STATIC_FILES)) { //STRATEGY: CACHE ONLY STRATEGY
     event.respondWith(
       caches.match(event.request)
     );
-  } else {
+  } else { //STRATEGY: CACHE FIRST, THEN NETWORK
     event.respondWith(
       caches.match(event.request)  //caches refers to overall cache storage
         .then(function (response) { //getting from cache
           if (response) {
             return response;
           } else {
-            return fetch(event.request) //getting from network
+            return fetch(event.request) //reach out to network if we dont have it in cache
               .then(function (res) {
-                return caches.open(CACHE_DYNAMIC_NAME)
-                  .then(function (cache) {
-                    // trimCache(CACHE_DYNAMIC_NAME, 3);
-                    cache.put(event.request.url, res.clone());
+                return caches.open(CACHE_DYNAMIC_NAME) //then we store the res in 'CACHE_DYNAMIC_NAME'
+                  .then(function (cache) { //then take the cache and 
+                    // trimCache(CACHE_DYNAMIC_NAME, 3); //MAX NO OF DYNAMIC CACHES WILL BE 4
+                    cache.put(event.request.url, res.clone()); // put(req,res) - takes 2 args
                     return res;
                   })
               })
-              .catch(function (err) {
-                return caches.open(CACHE_STATIC_NAME)
+              .catch(function (err) { //if network also fails, i.e: providing offline fallback pg
+                return caches.open(CACHE_STATIC_NAME) //open means storing in cache
                   .then(function (cache) {
                     if (event.request.headers.get('accept').includes('text/html')) {
-                      return cache.match('/offline.html');
+                      return cache.match('/offline.html'); //match means getting from cache
                     }
                   });
               });
@@ -131,6 +140,9 @@ self.addEventListener('fetch', function (event) {
     );
   }
 });
+
+
+// old method
 
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(
@@ -158,6 +170,8 @@ self.addEventListener('fetch', function (event) {
 //   );
 // });
 
+// old method
+
 
 
 // Cache-only
@@ -174,7 +188,7 @@ self.addEventListener('fetch', function (event) {
 //   );
 // });
 
-// network with cache fallback strategy
+// network with cache fallback strategy OR network 1st, then cache
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(
 //     fetch(event.request)
@@ -191,12 +205,14 @@ self.addEventListener('fetch', function (event) {
 //   );
 // });
 
-self.addEventListener('sync', function(event) { //whenever connectivity is re-established, SW will trigger this sync event. means now internet is on
+
+//whenever connectivity is re-established, SW will trigger this sync event. means now internet is on
+self.addEventListener('sync', function(event) { 
   console.log('[Service Worker] Background syncing', event);
   if (event.tag === 'sync-new-posts') { //checking if tasks is 'sync-new-posts'
     console.log('[Service Worker] Syncing new Posts');
     event.waitUntil(
-      readAllData('sync-posts') //reading/getting data from indexedDB
+      readAllData('sync-posts') //reading/getting data from 'sync-post' store present in indexedDB
         .then(function(data) {
           for (var dt of data) { //looping coz user can post multiple posts
           // now this fn is similar to sendData() in feed.js

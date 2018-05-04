@@ -51,11 +51,12 @@ function initializeLocation() {
 }
 
 function initializeMedia() { 
-  // Creating our own polyfills
+  
   if (!('mediaDevices' in navigator)) {
     navigator.mediaDevices = {};
   }
 
+  // Creating our own polyfills
   if (!('getUserMedia' in navigator.mediaDevices)) {
     navigator.mediaDevices.getUserMedia = function (constraints) { // 'constraints' can be audio or video
       var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -122,6 +123,7 @@ function openCreatePostModal() {
     deferredPrompt = null;
   }
 
+// TO UNREGISTER A SW,
   // if ('serviceWorker' in navigator) {
   //   navigator.serviceWorker.getRegistrations()
   //     .then(function(registrations) {
@@ -198,6 +200,7 @@ function createCard(data) {
   sharedMomentsArea.appendChild(cardWrapper);
 }
 
+// reload
 function updateUI(data) { 
   clearCards();
   for (var i = 0; i < data.length; i++) {
@@ -253,6 +256,7 @@ function sendData() {
     })
 }
 
+// we are listening/writing for "submit" event from this feed.js file coz sw.js cant listen to DOM events
 form.addEventListener('submit', function(event) {
   event.preventDefault(); //submit event sends data directly to the server which we dont want to do
 
@@ -263,7 +267,7 @@ form.addEventListener('submit', function(event) {
 
   closeCreatePostModal(); // close the post model if data is valid
 
-  // now we have to register a sync task
+  // registering a sync task
   if ('serviceWorker' in navigator && 'SyncManager' in window) { //checking if SW is present in the browser and also the SyncManager API
     navigator.serviceWorker.ready //if SW is in activ state, then returns a promise..
       .then(function(sw) {
@@ -276,7 +280,7 @@ form.addEventListener('submit', function(event) {
         };
         writeData('sync-posts', post) //above 'post' obj is stored in 'sync-posts' store
           .then(function() {
-            return sw.sync.register('sync-new-posts'); // sync is SyncManager. **Register sync task with SW
+            return sw.sync.register('sync-new-posts'); // sync is SyncManager. **Register sync task with SW as we cant listen to form event in sw.js
           })
           .then(function() {
             var snackbarContainer = document.querySelector('#confirmation-toast'); //snackbarContainer is black notification feature at bottom to display some msg
@@ -290,4 +294,5 @@ form.addEventListener('submit', function(event) {
     } else { // adding a fallback if browser doesnt support SW
       sendData(); // sends data directly to backend
     }
-})
+});
+// after this goto sw.js 'sync' event listener

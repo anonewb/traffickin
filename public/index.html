@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <!-- here "user-scalable=no" to feel more like a native app -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>InstaClone</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
@@ -126,9 +127,13 @@
 </div>
 <script defer src="/src/js/material.min.js"></script>
 <script src="/src/js/promise.js"></script>
+<!-- fetch is placed after promise because it is dependent on promise -->
 <script src="/src/js/fetch.js"></script>
+<!-- polyfills -->
 <script src="/src/js/idb.js"></script>
+<!-- indexedDB lib for storing JSON data -->
 <script src="/src/js/utility.js"></script>
+<!-- contains helper fn -->
 <script src="/src/js/app.js"></script>
 <script src="/src/js/feed.js"></script>
 </body>

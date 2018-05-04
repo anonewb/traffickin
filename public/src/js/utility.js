@@ -1,4 +1,4 @@
-// this file contents all the utility fn to manipulate indexedDB that can be reused
+// this file contents all the utility fn to manipulate indexedDB (for JSON data) that can be reused
 
 
 var dbPromise = idb.open('posts-store', 1, function (db) {
@@ -11,7 +11,7 @@ var dbPromise = idb.open('posts-store', 1, function (db) {
   });
 
 // 
-// takes 2 args: the 'store' we want to access and 'data' we want to write. eg: store = posts line5
+// takes 2 args: the 'store' we want to access and 'data' we want to write/store/add to indexedDB . eg: store = posts line5
 function writeData(st, data) { //st = store
     return dbPromise
       .then(function(db) {

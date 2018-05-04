@@ -2,13 +2,13 @@ var deferredPrompt;
 // selecting enableNotificationsButtons
 var enableNotificationsButtons = document.querySelectorAll('.enable-notifications');
 
-
+// Adding Promise polyfill if browser is legacy one
 if(!window.Promise){
     window.Promise = Promise;
 }
 
-// check if serviceWorker prop is present in navigator obj
-if('serviceWorker' in navigator){ 
+// Registering a SW, with scope in root of the project
+if('serviceWorker' in navigator){ // Feature Detection- check if serviceWorker prop is present in navigator obj
     navigator.serviceWorker
         .register('/sw.js') // register this file as SW
         .then(function(){
@@ -19,12 +19,14 @@ if('serviceWorker' in navigator){
         });
 }
 
+// Manipulating the time of the "Add to homescreen" prompt after user clicks on "+" button in feed.js file
 window.addEventListener('beforeinstallprompt', function(event){
     console.log('beforeinstallprompt fired');
     event.preventDefault();
     deferredPrompt = event;
     return false;
 });
+
 
 function displayConfirmNotification() {
   if ('serviceWorker' in navigator) {
@@ -51,6 +53,7 @@ function displayConfirmNotification() {
   }
 }
 
+// create a new subscription
 function configurePushSub() {
   if (!('serviceWorker' in navigator)) {
     return;
@@ -84,12 +87,6 @@ function configurePushSub() {
         },
         body: JSON.stringify(newSub)
       })
-      // .then(function(){
-      //   console.log("yy");
-      // })
-      // .catch(function(err){
-      //   console.log(err);
-      // })
     })
     .then(function(res) {
       if (res.ok) {
@@ -113,6 +110,7 @@ function askForNotificationPermission() {
     });
   }
 
+  // checking if browser supports 'Notification'
 if ('Notification' in window && 'serviceWorker' in navigator) {
     for (var i = 0; i < enableNotificationsButtons.length; i++) {
       enableNotificationsButtons[i].style.display = 'inline-block';
