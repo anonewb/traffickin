@@ -1,12 +1,15 @@
 {
-  "type": "service_account",
-  "project_id": "insta-clone-e3283",
-  "private_key_id": "98e694a1fbc3c7de2e46dd1f542ba55b5eb93042",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwb0GFWinysBA4\nUD/O0nnYF45hSk9wQSJpxriJpw/BGOTa73Le3Koyw9lHVsPeBLQmDKXgYd2wOlZW\n/jKumgmNPgSVfT+c1aMuB2yLg0JJ8QYqLet0ILxRpEEfO6Ul+gUcu4uZ8Ktgg16y\nJH6ecVVDjpFazu7XriY4SswYOpjqVpgyxLSDpYxtidalu4MqsFgNgm2X4NU93rZq\nyo5DetkHFWnKL4RyxLQ/9RGyCoEY6S5y3EhDFCh/igBOdnmys3FIDG35R6HrniRI\nB4TfZjqv1pLCvs1VZi3J+5gdJQcB1PTuLg7Ek0XECgBR/kcvnqKeckVq7IOYxsVy\nkq8wkRwtAgMBAAECggEABaPniTrkFJMj0EUNJnsMiZ0GgHOMHWd7ppGDfzpfvXl4\nAXa+VO5izit8I/TGX1qGTswV4RndKNUomEXZOsMyXc6h02HqZBoL9NH9xT+oNsMV\ngnOEL4AcvRMTljXFgQoLL/YKj7HbAgNucM1MCJvQu7o689dMg95tmtxAm4quA5m8\n/Jfm/x8QV57RqK/YKvWxw2DxvMKFeCCjNzJqJT3XqokDemCobPEdhJiNLlLekVyw\nJLWLRrKg1c1EWIWV6wCZzvWfLT2l8PI4ByQy7hKsiOzbDgHCe5W0h+uKKdV6ygW1\nAa2zksmZKqta31I3q4uTXk1CjDyjz1tiXwICKrlV6QKBgQDbhWY+z+ljVlX9nRUo\nIrYp4nPICEjowzEy2MikOzM05O19ftkgEGkV7H7ZDG/ztjV1xbWqXVAJfsgQhue3\nQ0WD1mwqKVNE3g5+1U7cQPFfxBzJEUY5bom4N5zeQgWY6DAKTRXR1u0/eLQXYyVY\ntBO6p9ChIXZLljteBNixmbAweQKBgQDNwOxC7cx/b8qjTLWwHC+m/u5fyQ15UQc4\noGEpLP1POcnAxFSdJmh5SVzFkYxPWG1Wu4vk+Q2qcQIHLzwa0cU3G31xuNIeHPfZ\nAmZ0zBUA7i7UKuPp2fzgaY9RNGqncCAPnb1T6WbbhnvGFks7Y9aNhDRR1s2xB7le\n7d5XZEAkVQKBgHnpP7sqZAbS77aFAjbj8B6asIoqb7M0k6IVWng6mFmLuYi0ZYi1\nFGcki92mVpYWXuIlBpqyb7yWOC1VfmH8biKldjSD9saMO6icdctEFciFdScE/Obw\nSHOSDwAv0kP0zpkp7jA3GFLjicBjQ15bw4kpoWea2cNoj1fLgTxAieShAoGBAI/A\nZlEsi1/N3ynQgnAUgUaPfkP12DAWaJErnDaEdEZR/Z9sjCFvoDZ9BxAR7JHTGjEq\nv0auqtmWMvCKE9g5Dyy9TBuUIVlgq9k2UBbyLwqDXrxlau8Lmh3AIp19nbZ2JDBE\n6O4jd/WQNBHlqZJI4rHk2BkFlphE6UJltp4gMKAxAoGAYqCTpEAMlzc6R1VWbM27\nXOoBw4ePSXYHV75fBZuZca46Q1LtUzQSbWXa/pz/hVGpgba7XlXVkg2d8vxwCoLT\nkL+3EWHWGLUI8hvjm8SKi1ipcGDNz7pnHbZrV52IrgFTJt34T4Fi3tN8aALbqEd6\nhm/KeeO5kudR52n+gAx/WM0=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-4yinc@insta-clone-e3283.iam.gserviceaccount.com",
-  "client_id": "111791056778115136288",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://accounts.google.com/o/oauth2/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4yinc%40insta-clone-e3283.iam.gserviceaccount.com"
+	"type": "service_account",
+	"project_id": "insta-clone-e3283",
+	"private_key_id": "98e694a1fbc3c7de2e46dd1f542ba55b5eb93042",
+	"private_key":
+		"-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwb0GFWinysBA4\nUD/O0nnYF45hSk9wQSJpxriJpw/BGOTa73Le3Koyw9lHVsPeBLQmDKXgYd2wOlZW\n/jKumgmNPgSVfT+c1aMuB2yLg0JJ8QYqLet0ILxRpEEfO6Ul+gUcu4uZ8Ktgg16y\nJH6ecVVDjpFazu7XriY4SswYOpjqVpgyxLSDpYxtidalu4MqsFgNgm2X4NU93rZq\nyo5DetkHFWnKL4RyxLQ/9RGyCoEY6S5y3EhDFCh/igBOdnmys3FIDG35R6HrniRI\nB4TfZjqv1pLCvs1VZi3J+5gdJQcB1PTuLg7Ek0XECgBR/kcvnqKeckVq7IOYxsVy\nkq8wkRwtAgMBAAECggEABaPniTrkFJMj0EUNJnsMiZ0GgHOMHWd7ppGDfzpfvXl4\nAXa+VO5izit8I/TGX1qGTswV4RndKNUomEXZOsMyXc6h02HqZBoL9NH9xT+oNsMV\ngnOEL4AcvRMTljXFgQoLL/YKj7HbAgNucM1MCJvQu7o689dMg95tmtxAm4quA5m8\n/Jfm/x8QV57RqK/YKvWxw2DxvMKFeCCjNzJqJT3XqokDemCobPEdhJiNLlLekVyw\nJLWLRrKg1c1EWIWV6wCZzvWfLT2l8PI4ByQy7hKsiOzbDgHCe5W0h+uKKdV6ygW1\nAa2zksmZKqta31I3q4uTXk1CjDyjz1tiXwICKrlV6QKBgQDbhWY+z+ljVlX9nRUo\nIrYp4nPICEjowzEy2MikOzM05O19ftkgEGkV7H7ZDG/ztjV1xbWqXVAJfsgQhue3\nQ0WD1mwqKVNE3g5+1U7cQPFfxBzJEUY5bom4N5zeQgWY6DAKTRXR1u0/eLQXYyVY\ntBO6p9ChIXZLljteBNixmbAweQKBgQDNwOxC7cx/b8qjTLWwHC+m/u5fyQ15UQc4\noGEpLP1POcnAxFSdJmh5SVzFkYxPWG1Wu4vk+Q2qcQIHLzwa0cU3G31xuNIeHPfZ\nAmZ0zBUA7i7UKuPp2fzgaY9RNGqncCAPnb1T6WbbhnvGFks7Y9aNhDRR1s2xB7le\n7d5XZEAkVQKBgHnpP7sqZAbS77aFAjbj8B6asIoqb7M0k6IVWng6mFmLuYi0ZYi1\nFGcki92mVpYWXuIlBpqyb7yWOC1VfmH8biKldjSD9saMO6icdctEFciFdScE/Obw\nSHOSDwAv0kP0zpkp7jA3GFLjicBjQ15bw4kpoWea2cNoj1fLgTxAieShAoGBAI/A\nZlEsi1/N3ynQgnAUgUaPfkP12DAWaJErnDaEdEZR/Z9sjCFvoDZ9BxAR7JHTGjEq\nv0auqtmWMvCKE9g5Dyy9TBuUIVlgq9k2UBbyLwqDXrxlau8Lmh3AIp19nbZ2JDBE\n6O4jd/WQNBHlqZJI4rHk2BkFlphE6UJltp4gMKAxAoGAYqCTpEAMlzc6R1VWbM27\nXOoBw4ePSXYHV75fBZuZca46Q1LtUzQSbWXa/pz/hVGpgba7XlXVkg2d8vxwCoLT\nkL+3EWHWGLUI8hvjm8SKi1ipcGDNz7pnHbZrV52IrgFTJt34T4Fi3tN8aALbqEd6\nhm/KeeO5kudR52n+gAx/WM0=\n-----END PRIVATE KEY-----\n",
+	"client_email":
+		"firebase-adminsdk-4yinc@insta-clone-e3283.iam.gserviceaccount.com",
+	"client_id": "111791056778115136288",
+	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+	"token_uri": "https://accounts.google.com/o/oauth2/token",
+	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+	"client_x509_cert_url":
+		"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4yinc%40insta-clone-e3283.iam.gserviceaccount.com"
 }
