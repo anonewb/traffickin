@@ -31,7 +31,7 @@ locationBtn.addEventListener('click', function(event) {
 			locationBtn.style.display = 'inline';
 			locationLoader.style.display = 'none';
 			fetchedLocation = { lat: position.coords.latitude, lng: 0 };
-			locationInput.value = 'In Munich';
+			locationInput.value = 'Navi Mumbai';
 			document.querySelector('#manual-location').classList.add('is-focused');
 		},
 		function(err) {
@@ -169,6 +169,8 @@ shareImageButton.addEventListener('click', openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
+/*
+
 // Currently not in use, allows to save assets in cache on demand otherwise
 function onSaveButtonClicked(event) {
 	console.log('clicked');
@@ -179,6 +181,8 @@ function onSaveButtonClicked(event) {
 		});
 	}
 }
+
+*/
 
 function clearCards() {
 	while (sharedMomentsArea.hasChildNodes()) {

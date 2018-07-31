@@ -1,7 +1,7 @@
 {
-	"name": "pwa",
-	"version": "1.0.0",
-	"description": "Building a simple Instagram clone.",
+	"name": "traffickin",
+	"version": "2.0.0",
+	"description": "PWA to fight against Trafficking",
 	"main": "index.js",
 	"scripts": {
 		"start": "http-server -c-1",
@@ -9,13 +9,21 @@
 		"generate-sw": "workbox generateSW workbox-config.js"
 	},
 	"keywords": [
-		"pwa",
-		"progressive",
-		"web",
-		"app"
+		"traffickin",
+		"trafficking",
+		"child",
+		"traffick",
+		"child trafficking",
+		"sex trafficking",
+		"forced labor",
+		"prostitution",
+		"debt bondage",
+		"girl",
+		"women",
+		"human trafficking"
 	],
 	"author": "HP",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"http-server": "^0.10.0",
 		"workbox-cli": "3.0.1"

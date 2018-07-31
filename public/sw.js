@@ -1,8 +1,8 @@
 importScripts('/src/js/idb.js');
 importScripts('/src/js/utility.js');
 
-var CACHE_STATIC_NAME = 'static-v30';
-var CACHE_DYNAMIC_NAME = 'dynamic-v3';
+var CACHE_STATIC_NAME = 'static-v31';
+var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var STATIC_FILES = [
 	//App Shell
 	'/', // imp to cache
@@ -317,8 +317,8 @@ self.addEventListener('push', function(event) {
 
 	var options = {
 		body: data.content,
-		icon: '/src/images/icons/app-icon-96x96.png',
-		badge: '/src/images/icons/app-icon-96x96.png',
+		icon: '/src/images/icons/app-96x96.png',
+		badge: '/src/images/icons/app-96x96.png',
 		data: {
 			url: data.openUrl
 		}

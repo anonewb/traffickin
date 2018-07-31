@@ -34,24 +34,24 @@ function displayConfirmNotification() {
 	if ('serviceWorker' in navigator) {
 		var options = {
 			body: 'You successfully subscribed to our Notification service!',
-			icon: '/src/images/icons/app-icon-96x96.png',
-			image: '/src/images/sf-boat.jpg',
+			icon: '/src/images/icons/app-96x96.png',
+			image: '/src/images/main-image-sm.png',
 			dir: 'ltr',
 			lang: 'en-US', // BCP 47,
 			vibrate: [100, 50, 200],
-			badge: '/src/images/icons/app-icon-96x96.png',
+			badge: '/src/images/icons/app-96x96.png',
 			tag: 'confirm-notification',
 			renotify: true,
 			actions: [
 				{
 					action: 'confirm',
 					title: 'Okay',
-					icon: '/src/images/icons/app-icon-96x96.png'
+					icon: '/src/images/icons/app-96x96.png'
 				},
 				{
 					action: 'cancel',
 					title: 'Cancel',
-					icon: '/src/images/icons/app-icon-96x96.png'
+					icon: '/src/images/icons/app-96x96.png'
 				}
 			]
 		};
