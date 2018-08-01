@@ -1,0 +1,26 @@
+[debug] [2018-08-01T10:15:09.081Z] ----------------------------------------------------------------------
+[debug] [2018-08-01T10:15:09.083Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-08-01T10:15:09.083Z] CLI Version:   4.0.0
+[debug] [2018-08-01T10:15:09.083Z] Platform:      win32
+[debug] [2018-08-01T10:15:09.083Z] Node Version:  v8.11.3
+[debug] [2018-08-01T10:15:09.084Z] Time:          Wed Aug 01 2018 15:45:09 GMT+0530 (India Standard Time)
+[debug] [2018-08-01T10:15:09.084Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-01T10:15:09.111Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-01T10:15:09.112Z] > authorizing via signed-in user
+[debug] [2018-08-01T10:15:09.114Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-08-01T10:15:09.115Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/wPWIiCv02pX_s8y8kNFj-yf4EwyF3FRu3gSZGFLKh64',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Aug 01 2018 15:45:09 GMT+0530 (India Standard Time)
+[debug] [2018-08-01T10:15:09.345Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-01T10:15:09.385Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/insta-clone-e3283  
+  
+ Wed Aug 01 2018 15:45:09 GMT+0530 (India Standard Time)
+[debug] [2018-08-01T10:15:10.684Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-01T10:15:10.684Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/insta-clone-e3283/tokens  
+  
+ Wed Aug 01 2018 15:45:10 GMT+0530 (India Standard Time)
